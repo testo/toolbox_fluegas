@@ -220,7 +220,7 @@ class CLogging;
 
 #define STATE_INIT                           1 /* @emem               1   Initialisierung  */
 #define STATE_MAIN_MENU                      2 /* @emem  A02 B02 C02  2   Main Menu  */
-#define STATE_MEASURE_MENU                   4/* @emem  A03 B03      3   Measure Menu  */
+#define STATE_MEASURE_MENU                   3/* @emem  A03 B03      3   Measure Menu  */
 #define STATE_MEMORY_PLACE_MENU              4/* @emem  A04          4   Memory / Measureplace Menu */
 #define STATE_MEMORY_EXTRA_MENU              5/* @emem  A05          5   Memory / Measureplace Menu */
 #define STATE_PROTOKOLL_MENU                 6/* @emem  A06          6   Protokoll Menu */

@@ -22,7 +22,7 @@ class CLogging;
 #define TESTO330BASE_OLDFIRMWARE      5  // old firmware of device
 #define TESTO330BASE_ZEROING          6  // measure instrument testo 330/335 is zeroing. No online measure values available
 #define TESTO330BASE_INVALIDARGUMENT  7  // one argument is out of range
-#define TESTO330BASE_NOTSUPPORTED     8  // not supported on this insztrument
+#define TESTO330BASE_NOTSUPPORTED     8  // not supported on this instrument
 
 #define MAX_CHANNELS  64
 #define MAX_VALUES    512
@@ -379,7 +379,7 @@ typedef struct
                                   // 2: szValue is valid (text value)
    float        fValue;           // measure value as float
    TCHAR         szValue[32];      // Text (e.g. name of fuel)
-   TCHAR        szText[32];       // Text in Landessprache
+   TCHAR        szText[32];       // localized text 
    TCHAR         szName[32];       // Name (can be set by application programme)
    int          iID;              // ID(can be set by application programme)
 } TOnlineChannel;
@@ -417,7 +417,7 @@ typedef struct
    float        fRusszahl1;            // smoke number 1
    float        fRusszahl2;            // smoke number 2
    float        fRusszahl3;            // smoke number 3
-   TCHAR        szRusspumpe[32];       // Bezeichnung der Russpumpe
+   TCHAR        szRusspumpe[32];       // smoke pump name
    float        fWTT;                  // Wärmeträgertemperatur
    int          iOilDerivate;          // Ölderivat 1:ja, 0:nein, -1: nicht eingegeben
 
@@ -530,7 +530,10 @@ TESTO330BASE_EXPORT unsigned int WINAPI Testo330GetNextProtocol(
       unsigned int uMaxChannels);
 TESTO330BASE_EXPORT unsigned int WINAPI Testo330SetActualFuel( void* hTesto330, unsigned int uFuelID );
 TESTO330BASE_EXPORT unsigned int WINAPI Testo330GetOnlineConfiguration( void* hTesto330, TOnlineChannel* channels, unsigned int uMaxChannels );
-TESTO330BASE_EXPORT unsigned int WINAPI Testo330GetOnlineValues( void* hTesto330, TOnlineChannel* channels, unsigned int uMaxChannels );
+TESTO330BASE_EXPORT unsigned int WINAPI Testo330GetOnlineValues( 
+    void* hTesto330, 
+    TOnlineChannel* channels /* use result of Testo330GetOnlineConfiguration*/, 
+    unsigned int uMaxChannels );
 TESTO330BASE_EXPORT unsigned int WINAPI Testo330GetUnitText( void* hTesto330, unsigned int uUnit, TCHAR* szUnitText, unsigned int uSizeUnitText );
 TESTO330BASE_EXPORT unsigned int WINAPI Testo330StartZeroing( void* hTesto330 );
 TESTO330BASE_EXPORT unsigned int WINAPI Testo330IsZeroing( void* hTesto330 );
@@ -568,7 +571,7 @@ TESTO330BASE_EXPORT unsigned int WINAPI Testo330GetSmokeNumber3( void* hTesto330
 TESTO330BASE_EXPORT unsigned int WINAPI Testo330GetSmokeNumberMean( void* hTesto330 );
 TESTO330BASE_EXPORT unsigned int WINAPI Testo330GetOilDerivate( void* hTesto330 );
 
-// Functions to read online values from Excel
+// Functions to read online values
 TESTO330BASE_EXPORT unsigned int WINAPI Testo330GetSerialNumber( void* hTesto330 );
 TESTO330BASE_EXPORT unsigned int WINAPI Excel330OnlineInit( void* hTesto330 );
 TESTO330BASE_EXPORT unsigned int WINAPI Excel330OnlineNumChannels( void* hTesto330 );
